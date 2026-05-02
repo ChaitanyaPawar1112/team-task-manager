@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.0</version>  <!-- Changed from 4.0.6 to 3.2.0 (stable) -->
+		<version>3.2.0</version>
 		<relativePath/>
 	</parent>
 	
@@ -33,7 +33,7 @@
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>  <!-- Changed from webmvc -->
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		
 		<!-- Validation -->
@@ -70,7 +70,7 @@
 			<scope>runtime</scope>
 		</dependency>
 		
-		<!-- Lombok (Reduces Boilerplate Code) -->
+		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
