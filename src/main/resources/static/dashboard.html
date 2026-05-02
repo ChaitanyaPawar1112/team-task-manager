@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Team Task Manager</title>
+    <link rel="icon" href="data:;">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Team Task Manager</div>
+        <div class="nav-user">
+            <span id="user-name"></span>
+            <span id="user-role" class="role-badge"></span>
+            <button onclick="logout()" class="logout-btn">Logout</button>
+        </div>
+    </nav>
+    
+    <div class="dashboard-container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Tasks</h3>
+                <div class="stat-number" id="total-tasks">0</div>
+            </div>
+            <div class="stat-card completed">
+                <h3>Completed</h3>
+                <div class="stat-number" id="completed-tasks">0</div>
+            </div>
+            <div class="stat-card pending">
+                <h3>Pending</h3>
+                <div class="stat-number" id="pending-tasks">0</div>
+            </div>
+            <div class="stat-card overdue">
+                <h3>Overdue</h3>
+                <div class="stat-number" id="overdue-tasks">0</div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="tasks-section">
+                <div class="section-header">
+                    <h2>My Tasks</h2>
+                    <button id="create-task-btn" class="btn-primary" style="display: none;">+ Create Task</button>
+                </div>
+                <div id="tasks-list" class="tasks-list"></div>
+            </div>
+            
+            <div class="projects-section">
+                <div class="section-header">
+                    <h2>Projects</h2>
+                    <button id="create-project-btn" class="btn-primary" style="display: none;">+ Create Project</button>
+                </div>
+                <div id="projects-list" class="projects-list"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Create Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeProjectModal()">&times;</span>
+            <h2>Create New Project</h2>
+            <input type="text" id="project-name" placeholder="Project Name">
+            <textarea id="project-desc" placeholder="Description"></textarea>
+            <button onclick="createProject()">Create Project</button>
+        </div>
+    </div>
+    
+    <!-- Edit Project Modal -->
+    <div id="edit-project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditProjectModal()">&times;</span>
+            <h2>Edit Project</h2>
+            <input type="hidden" id="edit-project-id">
+            <input type="text" id="edit-project-name" placeholder="Project Name">
+            <textarea id="edit-project-desc" placeholder="Description"></textarea>
+            <button onclick="updateProject()">Update Project</button>
+        </div>
+    </div>
+    
+    <!-- Create Task Modal -->
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTaskModal()">&times;</span>
+            <h2>Create New Task</h2>
+            <input type="text" id="task-title" placeholder="Task Title">
+            <textarea id="task-desc" placeholder="Description"></textarea>
+            <select id="task-project">
+                <option value="">Select Project</option>
+            </select>
+            <select id="task-assignee">
+                <option value="">Assign To</option>
+            </select>
+            <input type="date" id="task-deadline">
+            <button onclick="createTask()">Create Task</button>
+        </div>
+    </div>
+    
+    <!-- Edit Task Modal -->
+    <div id="edit-task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEditTaskModal()">&times;</span>
+            <h2>Edit Task</h2>
+            <input type="hidden" id="edit-task-id">
+            <input type="text" id="edit-task-title" placeholder="Task Title">
+            <textarea id="edit-task-desc" placeholder="Description"></textarea>
+            <select id="edit-task-project">
+                <option value="">Select Project</option>
+            </select>
+            <select id="edit-task-assignee">
+                <option value="">Assign To</option>
+            </select>
+            <select id="edit-task-status">
+                <option value="PENDING">Pending</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="COMPLETED">Completed</option>
+            </select>
+            <input type="date" id="edit-task-deadline">
+            <button onclick="updateTask()">Update Task</button>
+        </div>
+    </div>
+    
+    <!-- Add Member Modal -->
+    <div id="add-member-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddMemberModal()">&times;</span>
+            <h2>Add Member to Project</h2>
+            <select id="member-project-select">
+                <option value="">Select Project</option>
+            </select>
+            <select id="member-user-select">
+                <option value="">Select User</option>
+            </select>
+            <button onclick="addMemberToProject()">Add Member</button>
+            <div id="member-message" class="success-message"></div>
+        </div>
+    </div>
+    
+    <!-- View Members Modal -->
+    <div id="view-members-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeViewMembersModal()">&times;</span>
+            <h2>Project Members</h2>
+            <div id="members-list"></div>
+        </div>
+    </div>
+    
+    <script src="/js/api.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
